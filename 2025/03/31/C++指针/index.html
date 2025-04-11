@@ -1,10 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++指针基础 | 遇见猫のBlog</title><meta name="author" content="遇见猫君,yujiancat5@gmail.com"><meta name="copyright" content="遇见猫君"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++指针指针的定义及作用指针的定义：首先，要学习指针，我们肯定需要明白指针是什么：指针是一个变量，其值为另一个变量的地址，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为： type *var_name;  其中，type是指针变量类型，var_name是指针变量名。通过*来声明该变量为指针变量。 不同数据类型变量的指针的值都是一个代表内存">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++指针基础 | 遇见猫のBlog</title><meta name="author" content="遇见猫君"><meta name="copyright" content="遇见猫君"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++指针指针的定义及作用指针的定义：首先，要学习指针，我们肯定需要明白指针是什么：指针是一个变量，其值为另一个变量的地址，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为： 1type *var_name;  其中，type是指针变量类型，var_name是指针变量名。通过*来声明该变量为指针变量。 不同数据类型变量的指针的值都是一个代表内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++指针基础">
 <meta property="og:url" content="https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="遇见猫のBlog">
-<meta property="og:description" content="C++指针指针的定义及作用指针的定义：首先，要学习指针，我们肯定需要明白指针是什么：指针是一个变量，其值为另一个变量的地址，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为： type *var_name;  其中，type是指针变量类型，var_name是指针变量名。通过*来声明该变量为指针变量。 不同数据类型变量的指针的值都是一个代表内存">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:description" content="C++指针指针的定义及作用指针的定义：首先，要学习指针，我们肯定需要明白指针是什么：指针是一个变量，其值为另一个变量的地址，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为： 1type *var_name;  其中，type是指针变量类型，var_name是指针变量名。通过*来声明该变量为指针变量。 不同数据类型变量的指针的值都是一个代表内">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cufe5.github.io/images/p3.png">
 <meta property="article:published_time" content="2025-03-31T08:19:16.390Z">
 <meta property="article:modified_time" content="2025-03-31T09:44:11.835Z">
@@ -12,39 +12,143 @@
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="指针">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cufe5.github.io/images/p3.png"><link rel="shortcut icon" href="/images/logo.png"><link rel="canonical" href="https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://cufe5.github.io/images/p3.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "C++指针基础",
+  "url": "https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/",
+  "image": "https://cufe5.github.io/images/p3.png",
+  "datePublished": "2025-03-31T08:19:16.390Z",
+  "dateModified": "2025-03-31T09:44:11.835Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "遇见猫君",
+      "url": "https://cufe5.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/logo.png"><link rel="canonical" href="https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.3.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
-  runtime: '天',
+  runtime: '',
   dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: 遇见猫君","link":"链接: ","source":"来源: 遇见猫のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  lightbox: 'fancybox',
+  copyright: {"limitCount":50,"languages":{"author":"Author: 遇见猫君","link":"Link: ","source":"Source: 遇见猫のBlog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
+  islazyloadPlugin: false,
   isAnchor: false,
   percent: {
     toc: true,
@@ -53,115 +157,17 @@
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'C++指针基础',
-  isPost: true,
-  isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-03-31 17:44:11'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/Mutsumi.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/p3.png')"><nav id="nav"><span id="blog-info"><a href="/" title="遇见猫のBlog"><span class="site-name">遇见猫のBlog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++指针基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-31T08:19:16.390Z" title="发表于 2025-03-31 16:19:16">2025-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-31T09:44:11.835Z" title="更新于 2025-03-31 17:44:11">2025-03-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++指针基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="C-指针"><a href="#C-指针" class="headerlink" title="C++指针"></a>C++指针</h1><h2 id="指针的定义及作用"><a href="#指针的定义及作用" class="headerlink" title="指针的定义及作用"></a>指针的定义及作用</h2><h3 id="指针的定义："><a href="#指针的定义：" class="headerlink" title="指针的定义："></a>指针的定义：</h3><p>首先，要学习指针，我们肯定需要明白指针是什么：指针是一个<strong>变量</strong>，其值为另一个变量的<strong>地址</strong>，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">type *var_name;</span><br></pre></td></tr></table></figure>
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/Mutsumi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/p3.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">遇见猫のBlog</span></a><a class="nav-page-title" href="/"><span class="site-name">C++指针基础</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">C++指针基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-31T08:19:16.390Z" title="Created 2025-03-31 16:19:16">2025-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-31T09:44:11.835Z" title="Updated 2025-03-31 17:44:11">2025-03-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="C-指针"><a href="#C-指针" class="headerlink" title="C++指针"></a>C++指针</h1><h2 id="指针的定义及作用"><a href="#指针的定义及作用" class="headerlink" title="指针的定义及作用"></a>指针的定义及作用</h2><h3 id="指针的定义："><a href="#指针的定义：" class="headerlink" title="指针的定义："></a>指针的定义：</h3><p>首先，要学习指针，我们肯定需要明白指针是什么：指针是一个<strong>变量</strong>，其值为另一个变量的<strong>地址</strong>，即内存位置的直接地址。因为是变量，所以指针在存储其他变量地址之前，也需要先声明。指针变量的一般声明形式为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type *var_name;</span><br></pre></td></tr></table></figure>
 
 <p>其中，type是指针变量类型，var_name是指针变量名。通过*来声明该变量为指针变量。</p>
 <p>不同数据类型变量的指针的值都是一个代表内存地址的长的十六进制数。</p>
 <h3 id="指针的作用："><a href="#指针的作用：" class="headerlink" title="指针的作用："></a>指针的作用：</h3><p>指针能使得不同区域的代码可以轻易的共享<strong>内存</strong></p>
 <p>指针使得一些复杂的链接性的数据结构的构建成为可能，有些操作必须使用指针，比如申请堆内存，还有C++或者C语言中函数的调用分为值传递和引用传递，如果要在函数中修改被传递的对象，就必须通过这个对象指针来完成（引用的底层也是通过指针实现的）。（<em>值得一提的是java函数的调用只有引用传递没有值传递</em>）</p>
-<h3 id="指针的使用："><a href="#指针的使用：" class="headerlink" title="指针的使用："></a>指针的使用：</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> *x = &amp;a;</span><br><span class="line">*x = <span class="number">10</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;a的值为：&quot;</span> &lt;&lt; a &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="指针的使用："><a href="#指针的使用：" class="headerlink" title="指针的使用："></a>指针的使用：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> *x = &amp;a;</span><br><span class="line">*x = <span class="number">10</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;a的值为：&quot;</span> &lt;&lt; a &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
 
 <p>这里我们定义了一个int型变量a，并将a的值赋为0。之后我们定义了一个int类型的指针，并取a的地址赋给x（&amp;为取值符，会返回变量的地址），此时指针x指向的就是a的地址。然后我们将x进行解引用操作（即通过指针指向的地址拿到变量具体存储的值），将10赋给该变量。通过以上操作，最后打印出来a的值为10。以上就是指针的最简单的应用，通过指针我们能轻松的对内存进行操作，进而改变变量的值。</p>
 <blockquote>
@@ -183,7 +189,7 @@
 <li><strong>常量指针</strong>（Pointer to Constant）</li>
 </ol>
 <p>指针指向的内容是常量，不可修改，但指针本身可以指向其他地址。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> *ptr;       <span class="comment">//或者int const *ptr </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> *ptr;       <span class="comment">//或者int const *ptr </span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>特点：</p>
@@ -193,13 +199,13 @@
 </ul>
 </li>
 <li><p>示例：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span>* ptr = &amp;a;  <span class="comment">// 指向 a</span></span><br><span class="line"><span class="comment">// *ptr = 30;         //  错误：不能修改指向的数据</span></span><br><span class="line">ptr = &amp;b;            <span class="comment">//  正确：指针可以指向其他地址</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span>* ptr = &amp;a;  <span class="comment">// 指向 a</span></span><br><span class="line"><span class="comment">// *ptr = 30;         //  错误：不能修改指向的数据</span></span><br><span class="line">ptr = &amp;b;            <span class="comment">//  正确：指针可以指向其他地址</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <ol start="2">
 <li><strong>指针常量</strong>（Constant Pointer）</li>
 </ol>
 <p>指针本身是常量，不可指向其他地址，但指向的内容可以修改。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="type">const</span> ptr = &amp;a; <span class="comment">// 必须初始化</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="type">const</span> ptr = &amp;a; <span class="comment">// 必须初始化</span></span><br></pre></td></tr></table></figure>
 
 <p>因为指针指向的地址无法修改所以必须初始化</p>
 <ul>
@@ -210,7 +216,7 @@
 </ul>
 </li>
 <li><p>示例：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> ptr = &amp;a;  <span class="comment">// 初始化指向 a</span></span><br><span class="line">*ptr = <span class="number">30</span>;            <span class="comment">//  正确：修改 a 的值</span></span><br><span class="line"><span class="comment">// ptr = &amp;b;          //  错误：指针不可重新指向</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> ptr = &amp;a;  <span class="comment">// 初始化指向 a</span></span><br><span class="line">*ptr = <span class="number">30</span>;            <span class="comment">//  正确：修改 a 的值</span></span><br><span class="line"><span class="comment">// ptr = &amp;b;          //  错误：指针不可重新指向</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <p><em><strong>关键区分</strong></em></p>
 <ul>
@@ -230,12 +236,12 @@
 </li>
 </ul>
 <h2 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h2><p>数组的地址是在一整块连续的空间上，我们可以通过&amp;拿到对应元素的地址，数组名可以直接表示为数组的首地址，数组名是一个指针常量</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> *p = &amp;a[<span class="number">0</span>];     <span class="comment">//拿到数组a的首地址</span></span><br><span class="line"><span class="type">int</span> *p1  = a;     <span class="comment">//同样是拿到数组a的首地址，二者等价 </span></span><br><span class="line">p = &amp;a[<span class="number">5</span>];   <span class="comment">//将索引为5的元素地址重新赋给p</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> b[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//a = b;  错误 数组名是一个指针常量，因而他不能出现在左值（等号左边）因为无法修改指向的地址</span></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> *p = &amp;a[<span class="number">0</span>];     <span class="comment">//拿到数组a的首地址</span></span><br><span class="line"><span class="type">int</span> *p1  = a;     <span class="comment">//同样是拿到数组a的首地址，二者等价 </span></span><br><span class="line">p = &amp;a[<span class="number">5</span>];   <span class="comment">//将索引为5的元素地址重新赋给p</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> b[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//a = b;  错误 数组名是一个指针常量，因而他不能出现在左值（等号左边）因为无法修改指向的地址</span></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
 
 
 
 <p>由于数组的元素地址是规律递增，所以我们能够通过指针方便地访问数组中的元素</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> *p = a;     <span class="comment">//将数组a的首地址赋给p</span></span><br><span class="line">*(p+i) == p[i] == a[i] == *(a+i);    <span class="comment">//此时p指向首地址的后i个元素的地址</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> *p = a;     <span class="comment">//将数组a的首地址赋给p</span></span><br><span class="line">*(p+i) == p[i] == a[i] == *(a+i);    <span class="comment">//此时p指向首地址的后i个元素的地址</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -252,70 +258,106 @@
 <p>c++允许定义一个字符指针，初始化是指向一个字符常量，一般形式为：</p>
 <p><strong>注意</strong>    <del>char* p &#x3D; “C Language”;</del> 这种方式是c风格，在c++11及之后被弃用，因为c++11及之后的字面量为const char[]类型，所以在c++11版本之后应该写为：<em><em>const char</em> p &#x3D; “C++ Language”</em>*;</p>
 <p>如果需要能够修改字符串的值那么应该写为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;C++ Language&quot;</span>;</span><br><span class="line"><span class="type">char</span>* p = str;</span><br><span class="line">p[<span class="number">0</span>] = <span class="string">&#x27;c&#x27;</span>;   <span class="comment">//合法</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;C++ Language&quot;</span>;</span><br><span class="line"><span class="type">char</span>* p = str;</span><br><span class="line">p[<span class="number">0</span>] = <span class="string">&#x27;c&#x27;</span>;   <span class="comment">//合法</span></span><br></pre></td></tr></table></figure>
 
 <p>通过字符指针来遍历字符串：</p>
 <blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">&gt;<span class="type">char</span> str[] = <span class="string">&quot;C Language&quot;</span>, * p = str;</span><br><span class="line">&gt;<span class="keyword">while</span> (*p!=<span class="string">&#x27;\0&#x27;</span>) cout &lt;&lt; *p++; </span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="type">char</span> str[] = <span class="string">&quot;C Language&quot;</span>, * p = str;</span><br><span class="line">&gt;<span class="keyword">while</span> (*p!=<span class="string">&#x27;\0&#x27;</span>) cout &lt;&lt; *p++; </span><br></pre></td></tr></table></figure>
 
 <p>判断p指向的元素是不是字符串结束的标志。 *p++ 的含义：先输出p指向的元素然后p++(后置增增，先做完其他事再自增)<br>假设从str[0]开始，p指向的是C满足(*p!&#x3D;’\0’)因此执行循环，下一个循环p指向“空格”不是字符串结束的标志，继续<br>循环直到遇到字符串结束的标志后结束循环</p>
 </blockquote>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cufe5.github.io">遇见猫君</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/">https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://cufe5.github.io" target="_blank">遇见猫のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E9%92%88/">指针</a></div><div class="post_share"><div class="social-share" data-image="/images/p3.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/09/25/hello-world/" title="Hello World"><img class="cover" src="/images/top-image1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/Mutsumi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">遇见猫君</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cufe5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/cufe5" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yujiancat5@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%8C%87%E9%92%88"><span class="toc-number">1.</span> <span class="toc-text">C++指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">指针的定义及作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">指针的定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">指针的作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">指针的使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88%E5%92%8C%E9%87%8E%E6%8C%87%E9%92%88"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">空指针和野指针</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">指针运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">常量指针和指针常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84"><span class="toc-number">1.4.</span> <span class="toc-text">指针与数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.5.</span> <span class="toc-text">指针与字符串</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础"><img src="/images/p3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++指针基础"/></a><div class="content"><a class="title" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础">C++指针基础</a><time datetime="2025-03-31T08:19:16.390Z" title="发表于 2025-03-31 16:19:16">2025-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/hello-world/" title="Hello World"><img src="/images/top-image1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/09/25/hello-world/" title="Hello World">Hello World</a><time datetime="2024-09-25T15:20:23.157Z" title="发表于 2024-09-25 23:20:23">2024-09-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 遇见猫君</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaid.length === 0) return
-  const runMermaid = () => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://cufe5.github.io">遇见猫君</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/">https://cufe5.github.io/2025/03/31/C++%E6%8C%87%E9%92%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E9%92%88/">指针</a></div><div class="post-share"><div class="social-share" data-image="/images/p3.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/09/25/hello-world/" title="Hello World"><img class="cover" src="/images/girl.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">本来搭建这个博客是为了记录java学习笔记的，没想到开始干c++了，人生无常啊。。。。 </div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comments</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/Mutsumi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">遇见猫君</div><div class="author-info-description">技术分享与脑洞日常</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cufe5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/cufe5" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yujiancat5@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E6%8C%87%E9%92%88"><span class="toc-number">1.</span> <span class="toc-text">C++指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">指针的定义及作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">指针的定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">指针的作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">指针的使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88%E5%92%8C%E9%87%8E%E6%8C%87%E9%92%88"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">空指针和野指针</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">指针运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">常量指针和指针常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84"><span class="toc-number">1.4.</span> <span class="toc-text">指针与数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.5.</span> <span class="toc-text">指针与字符串</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础"><img src="/images/p3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++指针基础"/></a><div class="content"><a class="title" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础">C++指针基础</a><time datetime="2025-03-31T08:19:16.390Z" title="Created 2025-03-31 16:19:16">2025-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/hello-world/" title="Hello World"><img src="/images/girl.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/09/25/hello-world/" title="Hello World">Hello World</a><time datetime="2024-09-25T15:20:23.157Z" title="Created 2024-09-25 23:20:23">2024-09-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 遇见猫君</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll to Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.3.5"></script><script src="/js/main.js?v=5.3.5"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = ele => {
     window.loadMermaid = true
     const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-    Array.from($mermaid).forEach((item, index) => {
+    ele.forEach((item, index) => {
       const mermaidSrc = item.firstElementChild
-      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-      const mermaidID = 'mermaid-' + index
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
       const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
       const renderFn = mermaid.render(mermaidID, mermaidDefinition)
-
-      const renderV10 = () => {
-        renderFn.then(({svg}) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svg)
-        })
-      }
-
-      const renderV9 = svg => {
+      const renderMermaid = svg => {
         mermaidSrc.insertAdjacentHTML('afterend', svg)
       }
 
-      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
     })
   }
 
   const loadMermaid = () => {
-    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js').then(runMermaidFn)
   }
 
-  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
-
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
   window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
 })()</script><script>(() => {
-  const initValine = () => {
-    const valine = new Valine(Object.assign({
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
       el: '#vcomment',
       appId: '5b4v2JLxleqyFgHlIx0K2eKI-MdYXbMMI',
       appKey: 'OEa03SSk3jzMkatQNVst9n3M',
       avatar: 'monsterid',
       serverURLs: 'https://5b4v2JLx.api.lncldglobal.com',
       emojiMaps: "",
-      path: window.location.pathname,
-      visitor: false
-    }, null))
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
   }
 
-  const loadValine = async () => {
-    if (typeof Valine === 'function') initValine()
-    else {
-      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
-      initValine()
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js')
+      initValine(el, path)
     }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
   }
 
   if ('Valine' === 'Valine' || !true) {
