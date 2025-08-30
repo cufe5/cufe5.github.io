@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SpringBoot Controller层处理前端请求方法 | 遇见猫のBlog</title><meta name="author" content="遇见猫君"><meta name="copyright" content="遇见猫君"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SpringBoot Controller层处理前端请求方法在现代 Web 开发中，前后端分离架构已成为主流。作为连接前端用户界面和后端业务逻辑的桥梁，Controller 层的设计与编写至关重要。它负责接收、解析前端发送的 HTTP 请求，并返回处理结果。 Controller 的基本结构一个标准的 RESTful Controller 通常由两个核心注解开始：  @RestController">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot Controller层处理前端请求方法">
+<meta property="og:url" content="https://cufe5.github.io/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:site_name" content="遇见猫のBlog">
+<meta property="og:description" content="SpringBoot Controller层处理前端请求方法在现代 Web 开发中，前后端分离架构已成为主流。作为连接前端用户界面和后端业务逻辑的桥梁，Controller 层的设计与编写至关重要。它负责接收、解析前端发送的 HTTP 请求，并返回处理结果。 Controller 的基本结构一个标准的 RESTful Controller 通常由两个核心注解开始：  @RestController">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cufe5.github.io/images/xl.png">
+<meta property="article:published_time" content="2025-08-30T05:34:26.766Z">
+<meta property="article:modified_time" content="2025-08-30T05:35:37.291Z">
+<meta property="article:author" content="遇见猫君">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="spring">
+<meta property="article:tag" content="controller">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cufe5.github.io/images/xl.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SpringBoot Controller层处理前端请求方法",
+  "url": "https://cufe5.github.io/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/",
+  "image": "https://cufe5.github.io/images/xl.png",
+  "datePublished": "2025-08-30T05:34:26.766Z",
+  "dateModified": "2025-08-30T05:35:37.291Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "遇见猫君",
+      "url": "https://cufe5.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/logo.png"><link rel="canonical" href="https://cufe5.github.io/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBoot Controller层处理前端请求方法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/Mutsumi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/xl.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">遇见猫のBlog</span></a><a class="nav-page-title" href="/"><span class="site-name">SpringBoot Controller层处理前端请求方法</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-robot"></i><span> 个人</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fas fa-comment-medical"></i><span> 说说</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-asterisk"></i><span> 关于</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">SpringBoot Controller层处理前端请求方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-30T05:34:26.766Z" title="发表于 2025-08-30 13:34:26">2025-08-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-30T05:35:37.291Z" title="更新于 2025-08-30 13:35:37">2025-08-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/spring/">spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="SpringBoot-Controller层处理前端请求方法"><a href="#SpringBoot-Controller层处理前端请求方法" class="headerlink" title="SpringBoot Controller层处理前端请求方法"></a>SpringBoot Controller层处理前端请求方法</h1><p>在现代 Web 开发中，前后端分离架构已成为主流。作为连接前端用户界面和后端业务逻辑的桥梁，Controller 层的设计与编写至关重要。它负责接收、解析前端发送的 HTTP 请求，并返回处理结果。</p>
+<h2 id="Controller-的基本结构"><a href="#Controller-的基本结构" class="headerlink" title="Controller 的基本结构"></a>Controller 的基本结构</h2><p>一个标准的 RESTful Controller 通常由两个核心注解开始：</p>
+<ul>
+<li><code>@RestController</code>: 这是一个组合注解，相当于 <code>@Controller</code> + <code>@ResponseBody</code>。它告诉 Spring，这个类中的所有方法返回的结果都将直接被序列化为 JSON 格式并写入 HTTP 响应体中。</li>
+<li><code>@RequestMapping(&quot;/api/users&quot;)</code>: 这个注解定义了该 Controller 下所有 API 的公共 URL 前缀，有助于组织和管理你的 API 路由。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/v1/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依赖注入业务逻辑层</span></span><br><span class="line">    <span class="comment">// @Autowired</span></span><br><span class="line">    <span class="comment">// private UserService userService;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 此处编写处理具体请求的方法 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接收参数的五种核心方法"><a href="#接收参数的五种核心方法" class="headerlink" title="接收参数的五种核心方法"></a>接收参数的五种核心方法</h2><p>前端可以通过多种方式将数据传递给后端，Spring Boot 提供了相应的注解来轻松获取这些数据。</p>
+<h3 id="1-PathVariable：从-URL-路径中获取"><a href="#1-PathVariable：从-URL-路径中获取" class="headerlink" title="1. @PathVariable：从 URL 路径中获取"></a>1. <code>@PathVariable</code>：从 URL 路径中获取</h3><p>当参数是 URL 的一部分，用于标识一个唯一资源时（例如用户 ID），这是最佳选择。它符合 RESTful 设计风格。</p>
+<ul>
+<li><strong>前端请求</strong>: <code>GET /api/v1/users/123</code></li>
+<li><strong>后端代码</strong>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;userId&#125;&quot;)</span> <span class="comment">// &#123;userId&#125; 是路径占位符</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Long id)</span> &#123;</span><br><span class="line">    <span class="comment">// @PathVariable 会将 URL 中占位符的值赋给方法参数 id</span></span><br><span class="line">    System.out.println(<span class="string">&quot;正在查询的用户 ID 是: &quot;</span> + id);</span><br><span class="line">    <span class="comment">// return userService.findById(id);</span></span><br><span class="line">    <span class="comment">// 示例返回...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">User</span>(id, <span class="string">&quot;xiaoming&quot;</span>, <span class="string">&quot;xiaoming@qq.com&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-RequestParam：从-URL-查询参数中获取"><a href="#2-RequestParam：从-URL-查询参数中获取" class="headerlink" title="2. @RequestParam：从 URL 查询参数中获取"></a>2. <code>@RequestParam</code>：从 URL 查询参数中获取</h3><p>当参数用于过滤、分页、排序等场景时，通常会作为查询字符串（Query String）跟在 URL 的 <code>?</code> 后面。</p>
+<ul>
+<li><strong>前端请求</strong>: <code>GET /api/v1/users/search?name=xiaoming&amp;page=1</code></li>
+<li><strong>后端代码</strong>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/search&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Page&lt;User&gt; <span class="title function_">searchUsers</span><span class="params">(</span></span><br><span class="line"><span class="params">        <span class="meta">@RequestParam(&quot;name&quot;)</span> String name, // 这是一个必须提供的参数</span></span><br><span class="line"><span class="params">        <span class="meta">@RequestParam(value = &quot;page&quot;, required = false, defaultValue = &quot;0&quot;)</span> <span class="type">int</span> page // 非必须参数，并提供默认值</span></span><br><span class="line"><span class="params">)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;搜索姓名: &quot;</span> + name + <span class="string">&quot;, 页码: &quot;</span> + page);</span><br><span class="line">    <span class="comment">// return userService.searchByName(name, page);</span></span><br><span class="line">    <span class="comment">// 示例返回...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键属性</strong>:</p>
+<ul>
+<li><code>required = false</code>: 表示该参数为可选。</li>
+<li><code>defaultValue</code>: 如果前端未提供该参数，则使用此默认值。</li>
+</ul>
+<blockquote>
+<p>当Controller的方法的参数名和请求参数名完全一致是可以省略@RequstParam注解</p>
+</blockquote>
+<h3 id="3-RequestBody：从请求体中获取-重要"><a href="#3-RequestBody：从请求体中获取-重要" class="headerlink" title="3. @RequestBody：从请求体中获取 (重要)"></a>3. <code>@RequestBody</code>：从请求体中获取 (重要)</h3><p>这是处理复杂数据（如创建或更新一个对象）时<strong>最常用、最核心</strong>的方式。前端将一个 JSON 对象放在请求体中，后端通过 <code>@RequestBody</code> 将其自动映射为一个 Java 对象（通常是 DTO）。</p>
+<ul>
+<li><p><strong>前端请求</strong>:</p>
+<ul>
+<li><p>方法: <code>POST /api/v1/users</code></p>
+</li>
+<li><p>请求头: <code>Content-Type: application/json</code></p>
+</li>
+<li><p>请求体 (Body):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;username&quot;</span>: <span class="string">&quot;Jiro&quot;</span>,</span><br><span class="line">  <span class="string">&quot;email&quot;</span>: <span class="string">&quot;jiro@example.com&quot;</span>,</span><br><span class="line">  <span class="string">&quot;password&quot;</span>: <span class="string">&quot;password123&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>后端代码:</p>
+<p>首先，定义一个数据传输对象 (DTO) 来匹配 JSON 结构。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UserCreateDTO.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserCreateDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略 Getters 和 Setters...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，在 Controller 中使用 <code>@RequestBody</code> 注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserCreateDTO userDTO)</span> &#123;</span><br><span class="line">    <span class="comment">// Spring Boot 会自动将请求体中的 JSON 反序列化为 UserCreateDTO 对象</span></span><br><span class="line">    System.out.println(<span class="string">&quot;正在创建新用户: &quot;</span> + userDTO.getUsername());</span><br><span class="line">    <span class="comment">// User newUser = userService.create(userDTO);</span></span><br><span class="line">    <span class="comment">// return newUser;</span></span><br><span class="line">    <span class="comment">// 示例返回...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">2L</span>, userDTO.getUsername(), userDTO.getEmail());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>注意：<code>@RequestBody</code> 仅适用于有请求体的方法（如 POST&#x2F;PUT&#x2F;PATCH），不可用于 GET 请求(因为 GET 请求无请求体)。</p>
+</blockquote>
+<h3 id="4-表单数据-Form-Data"><a href="#4-表单数据-Form-Data" class="headerlink" title="4. 表单数据 (Form Data)"></a>4. 表单数据 (Form Data)</h3><p>当处理传统的 HTML 表单提交 (<code>Content-Type: application/x-www-form-urlencoded</code>) 时，你不需要使用 <code>@RequestBody</code>。Spring Boot 可以直接将表单的键值对映射到 DTO 对象的字段上。</p>
+<ul>
+<li><strong>前端请求</strong>: <code>POST /api/v1/users/register</code> 并提交表单数据 <code>username=Saburo&amp;email=saburo@example.com</code></li>
+<li><strong>后端代码</strong>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">registerByForm</span><span class="params">(UserCreateDTO userDTO)</span> &#123; <span class="comment">// 直接用对象接收，无需注解</span></span><br><span class="line">    System.out.println(<span class="string">&quot;通过表单注册的用户: &quot;</span> + userDTO.getUsername());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Register success for &quot;</span> + userDTO.getUsername();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-RequestHeader：从请求头中获取"><a href="#5-RequestHeader：从请求头中获取" class="headerlink" title="5. @RequestHeader：从请求头中获取"></a>5. <code>@RequestHeader</code>：从请求头中获取</h3><p>有时需要获取 HTTP 请求头中的信息，例如用于身份认证的 <code>Authorization</code> 令牌。</p>
+<ul>
+<li><strong>前端请求</strong>: <code>GET /api/v1/users/me</code>，并在请求头中添加 <code>Authorization: Bearer my-jwt-token</code></li>
+<li><strong>后端代码</strong>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/me&quot;)</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getMyProfile</span><span class="params">(<span class="meta">@RequestHeader(&quot;Authorization&quot;)</span> String token)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;收到的认证 Token 是: &quot;</span> + token);</span><br><span class="line">    <span class="comment">// 接下来可以解析 token 来获取用户信息</span></span><br><span class="line">    <span class="comment">// User user = authService.getUserFromToken(token);</span></span><br><span class="line">    <span class="comment">// return user;</span></span><br><span class="line">    <span class="comment">// 示例返回...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">1L</span>, <span class="string">&quot;Taro&quot;</span>, <span class="string">&quot;taro@example.com&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了方便记忆，下表总结了各种注解的适用场景：</p>
+<table>
+<thead>
+<tr>
+<th><strong>注解</strong></th>
+<th><strong>数据来源</strong></th>
+<th><strong>主要用途</strong></th>
+<th><strong>常用 HTTP 方法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>@PathVariable</code></strong></td>
+<td>URL 路径 (<code>/users/&#123;id&#125;</code>)</td>
+<td>标识唯一资源</td>
+<td><code>GET</code>, <code>PUT</code>, <code>DELETE</code></td>
+</tr>
+<tr>
+<td><strong><code>@RequestParam</code></strong></td>
+<td>URL 查询参数 (<code>?key=value</code>)</td>
+<td>过滤、分页、简单参数</td>
+<td><code>GET</code></td>
+</tr>
+<tr>
+<td><strong><code>@RequestBody</code></strong></td>
+<td>请求体 (Request Body)</td>
+<td><strong>传输复杂对象 (JSON)</strong></td>
+<td><strong><code>POST</code></strong>, <strong><code>PUT</code></strong></td>
+</tr>
+<tr>
+<td>(无注解的对象)</td>
+<td>表单数据 (Form Data)</td>
+<td>接收表单提交</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td><strong><code>@RequestHeader</code></strong></td>
+<td>请求头 (Request Headers)</td>
+<td>获取认证令牌、元数据等</td>
+<td>所有方法</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cufe5.github.io">遇见猫君</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cufe5.github.io/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/">https://cufe5.github.io/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://cufe5.github.io" target="_blank">遇见猫のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/spring/">spring</a><a class="post-meta__tags" href="/tags/controller/">controller</a></div><div class="post-share"><div class="social-share" data-image="/images/xl.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/06/22/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Java多线程学习笔记"><img class="cover" src="/images/huiye.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Java多线程学习笔记</div></div><div class="info-2"><div class="info-item-1">Java多线程学习笔记进程和线程 本节内容 进程和线程的概念 并发和并行的概念 线程的基本应用    进程和线程的概念 进程  程序由指令和数据组成，但这些指令要运行，数据要读写，那么就需要将指令加载至CPU，数据加载至内存。在指令运行过中还需要用到磁盘、网络等设备。进程就是加载指令、管理内存、管理IO的 当一个程序被运行，从磁盘加载这个程序的代码至内存，此时就开启了一个进程 进程可视为程序的一个实例。大部分程序可以同时运行多个实例进程（例如记事本、画图、浏览器等），也有的程序只有一个实例进程（例如网易云、Steam等）   线程  一个进程之内可以分一到多个线程 一个线程就是一个指令流，将指令流中的一条条指令以一定顺序交给CPU执行 Java中，线程作为最小调度单位，进程作为资源分配的最小单位。在Windows中的进程是不活动 ，只是作为线程的容器   二者对比  进程基本上是相互独立的，而线程存在于进程内，是进程的一个子集 进程拥有共享的资源，如内存空间等，供其内部线程共享 进程间通信较为复杂 同一台计算机的进程通信称为IPC（Inter-process...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/06/22/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Java多线程学习笔记"><img class="cover" src="/images/huiye.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-22</div><div class="info-item-2">Java多线程学习笔记</div></div><div class="info-2"><div class="info-item-1">Java多线程学习笔记进程和线程 本节内容 进程和线程的概念 并发和并行的概念 线程的基本应用    进程和线程的概念 进程  程序由指令和数据组成，但这些指令要运行，数据要读写，那么就需要将指令加载至CPU，数据加载至内存。在指令运行过中还需要用到磁盘、网络等设备。进程就是加载指令、管理内存、管理IO的 当一个程序被运行，从磁盘加载这个程序的代码至内存，此时就开启了一个进程 进程可视为程序的一个实例。大部分程序可以同时运行多个实例进程（例如记事本、画图、浏览器等），也有的程序只有一个实例进程（例如网易云、Steam等）   线程  一个进程之内可以分一到多个线程 一个线程就是一个指令流，将指令流中的一条条指令以一定顺序交给CPU执行 Java中，线程作为最小调度单位，进程作为资源分配的最小单位。在Windows中的进程是不活动 ，只是作为线程的容器   二者对比  进程基本上是相互独立的，而线程存在于进程内，是进程的一个子集 进程拥有共享的资源，如内存空间等，供其内部线程共享 进程间通信较为复杂 同一台计算机的进程通信称为IPC（Inter-process...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/Mutsumi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">遇见猫君</div><div class="author-info-description">技术分享与脑洞日常</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cufe5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/cufe5" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yujiancat5@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot-Controller%E5%B1%82%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot Controller层处理前端请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Controller-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Controller 的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0%E7%9A%84%E4%BA%94%E7%A7%8D%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">接收参数的五种核心方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-PathVariable%EF%BC%9A%E4%BB%8E-URL-%E8%B7%AF%E5%BE%84%E4%B8%AD%E8%8E%B7%E5%8F%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. @PathVariable：从 URL 路径中获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RequestParam%EF%BC%9A%E4%BB%8E-URL-%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E4%B8%AD%E8%8E%B7%E5%8F%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. @RequestParam：从 URL 查询参数中获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-RequestBody%EF%BC%9A%E4%BB%8E%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%AD%E8%8E%B7%E5%8F%96-%E9%87%8D%E8%A6%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. @RequestBody：从请求体中获取 (重要)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE-Form-Data"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 表单数据 (Form Data)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-RequestHeader%EF%BC%9A%E4%BB%8E%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E8%8E%B7%E5%8F%96"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. @RequestHeader：从请求头中获取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" title="SpringBoot Controller层处理前端请求方法"><img src="/images/xl.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot Controller层处理前端请求方法"/></a><div class="content"><a class="title" href="/2025/08/30/%E9%80%9A%E8%BF%87SpringBoot%20Controller%E5%A4%84%E7%90%86%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" title="SpringBoot Controller层处理前端请求方法">SpringBoot Controller层处理前端请求方法</a><time datetime="2025-08-30T05:34:26.766Z" title="发表于 2025-08-30 13:34:26">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/22/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Java多线程学习笔记"><img src="/images/huiye.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java多线程学习笔记"/></a><div class="content"><a class="title" href="/2025/06/22/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Java多线程学习笔记">Java多线程学习笔记</a><time datetime="2025-06-22T10:06:18.550Z" title="发表于 2025-06-22 18:06:18">2025-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础"><img src="/images/p3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++指针基础"/></a><div class="content"><a class="title" href="/2025/03/31/C++%E6%8C%87%E9%92%88/" title="C++指针基础">C++指针基础</a><time datetime="2025-03-31T08:19:16.390Z" title="发表于 2025-03-31 16:19:16">2025-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/hello-world/" title="Hello World"><img src="/images/girl.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/09/25/hello-world/" title="Hello World">Hello World</a><time datetime="2024-09-25T15:20:23.157Z" title="发表于 2024-09-25 23:20:23">2024-09-25</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/xl.png);"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By 遇见猫君</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
